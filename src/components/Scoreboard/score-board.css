@@ -1,0 +1,96 @@
+.scoreboard {
+  width: 40rem;
+	line-height: 1;
+	
+	max-height: calc(
+		100vh - var(--size-main-block-margin-top) - 1rem
+	);
+	overflow-y: scroll;
+}
+
+.scoreboard__item:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.score-item {
+  display: flex;
+	flex-direction: column;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	background-color: var(--color-second-more-lighter);
+}
+
+.score-item__header {
+	display: flex;
+	align-items: center;
+	border-bottom: 2px solid var(--color-main-lighter);
+	margin-bottom: 1rem;
+	padding-bottom: 0.25rem;
+}
+
+.score-item__place {
+	font-weight: bold;
+	font-size: 2rem;
+	color: var(--color-main);
+	width: 8.5rem;
+	padding-left: 1rem;
+	margin-right: 1rem;
+}
+
+.score-item__user-name {
+	font-weight: lighter;
+	font-size: 1.5rem;
+}
+
+.score-item__content {
+	display: flex;
+}
+
+.score-item__avatar {
+	width: 7rem;
+	height: 7rem;
+	margin-right: 3rem;
+	
+}
+
+.score-item__count-block {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+}
+
+.score-item__score-block {
+	width: 8rem;
+	margin-left: 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.score-all__name {
+	font-weight: bold;
+	font-size: 1.25rem;
+	margin-bottom: 0.25rem;
+}
+
+.score-all__summ {
+	font-weight: lighter;
+	font-size: 5rem;
+	color: var(--color-main);
+}
+
+.score-item__info:not(:first-of-type) {
+	margin-top: 1rem;
+}
+
+.score-info {
+	display: flex;
+	font-size: 1.25rem;
+}
+
+.score-info__field-score {
+	font-weight: bold;
+	margin-left: auto;
+}

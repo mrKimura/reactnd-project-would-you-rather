@@ -1,0 +1,30 @@
+.login {
+	width: 22rem;
+	margin-top: var(--size-main-block-margin-top);
+}
+
+.login__header {
+	font-size: 1.75rem;
+	line-height: 1.35;
+	color: var(--color-main);
+}
+
+.login__form {
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.formatted-option {
+	display: flex;
+	align-items: center;
+}
+
+.login__avatar {
+	width: 2rem;
+	height: 2rem;
+	margin-right: 1rem;
+}
+
+.login__btn {
+	margin-top: 1rem;
+}
