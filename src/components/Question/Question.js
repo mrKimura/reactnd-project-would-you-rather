@@ -1,22 +1,28 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import "./question.css";
-import { OPTIONS } from "../../utils/CONST";
-import QuestionUnAnswered from "./QuestionUnAnswered";
-import QuestionAnswered from "./QuestionAnswered";
-import { handleAnswerQuestion } from "../../actions/questions";
-import Page404 from "../Page404/Page404";
+import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import './question.css'
+import { OPTIONS } from '../../utils/CONST'
+import QuestionUnAnswered from './QuestionUnAnswered'
+import QuestionAnswered from './QuestionAnswered'
+import { handleAnswerQuestion } from '../../actions/questions'
+import Page404 from '../Page404/Page404'
 
-const Question = props => {
-  if (props.question === null) return <Page404 />;
-  const {
-    questionIsAnswered,
-    setQuestionAnswerAction,
-    authedUser,
-    question
-  } = props;
-  const { name, avatarURL } = props.author;
+const getQuestionOptions = question => {
+  const options = []
+  OPTIONS.forEach(o => (question[o] ? options.push(question[o]) : null))
+  return options
+}
+
+const Question = ({
+  questionIsAnswered,
+  setQuestionAnswerAction,
+  authedUser,
+  question,
+  author,
+}) => {
+  if (question === null) return <Page404 />
+  const { name, avatarURL } = author
 
   return (
     <div className="question container">
@@ -30,10 +36,7 @@ const Question = props => {
         </div>
         <div className="question__block">
           {questionIsAnswered ? (
-            <QuestionAnswered
-              options={getQuestionOptions(question)}
-              authedUser={authedUser}
-            />
+            <QuestionAnswered options={getQuestionOptions(question)} authedUser={authedUser} />
           ) : (
             <QuestionUnAnswered
               options={getQuestionOptions(question)}
@@ -44,50 +47,40 @@ const Question = props => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const getQuestionOptions = question => {
-  const options = [];
-  OPTIONS.forEach(o => (question[o] ? options.push(question[o]) : null));
-  return options;
-};
 const getQuestionAuthor = (users, question) =>
-  Object.values(users).filter(user => user.id === question.author)[0];
+  Object.values(users).filter(user => user.id === question.author)[0]
 
 const isQuestionAnswered = (authedUser, question) => {
-  const allVotes = [];
-  OPTIONS.forEach(
-    o => (question[o] ? allVotes.push(...question[o].votes) : null)
-  );
-  return allVotes.includes(authedUser);
-};
+  const allVotes = []
+  OPTIONS.forEach(o => (question[o] ? allVotes.push(...question[o].votes) : null))
+  return allVotes.includes(authedUser)
+}
 
 const mapStateToProps = ({ authedUser, questions, users }, navigation) => {
-  const question = questions[navigation.match.params.question_id];
+  const question = questions[navigation.match.params.question_id]
   if (question) {
     return {
       question,
       author: getQuestionAuthor(users, question),
       questionIsAnswered: isQuestionAnswered(authedUser, question),
-      authedUser
-    };
+      authedUser,
+    }
   }
   return {
-    question: null
-  };
-};
+    question: null,
+  }
+}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setQuestionAnswerAction: (answer, id) =>
-      dispatch(handleAnswerQuestion(answer, id))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  setQuestionAnswerAction: (answer, id) => dispatch(handleAnswerQuestion(answer, id)),
+})
 
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )(Question)
-);
+    mapDispatchToProps,
+  )(Question),
+)

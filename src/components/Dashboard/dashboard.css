@@ -12,10 +12,7 @@
 }
 
 .dashboard__questions {
-  max-height: calc(
-    100vh - var(--size-main-block-margin-top)
-      - 2rem - 1rem - 3.75rem - 0.5rem
-  );
+  max-height: calc(100vh - var(--size-main-block-margin-top) - 2rem - 1rem - 3.75rem - 0.5rem);
   overflow-y: scroll;
 }
 
@@ -63,7 +60,7 @@
   margin-top: auto;
 }
 
-.dash-item__heading{
+.dash-item__heading {
   font-weight: bold;
   font-size: 1.13rem;
   margin-bottom: 1rem;
@@ -74,11 +71,11 @@
   display: flex;
 }
 
-.dash-question__dotes{
+.dash-question__dotes {
   flex: 0 0 0.9rem;
 }
 
-.dash-question__answer{
+.dash-question__answer {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

@@ -11,9 +11,7 @@
   /*sizes*/
   --size-header-h: 3rem;
   --size-header-main-interblocks: 4rem;
-  --size-main-block-margin-top: calc(
-    var(--size-header-h) + var(--size-header-main-interblocks)
-  );
+  --size-main-block-margin-top: calc(var(--size-header-h) + var(--size-header-main-interblocks));
 }
 
 /*minireset*/

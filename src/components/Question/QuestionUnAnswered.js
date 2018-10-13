@@ -1,27 +1,29 @@
-import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
-import {OPTIONS} from '../../utils/CONST'
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { OPTIONS } from '../../utils/CONST'
 
 class QuestionUnAnswered extends Component {
   state = {
-    selectedOption: OPTIONS[0]
-  };
+    selectedOption: OPTIONS[0],
+  }
 
   handleCheck = e => {
-    const currentValue = e.target.value;
+    const currentValue = e.target.value
     this.setState(() => ({
-      selectedOption: currentValue
-    }));
-  };
+      selectedOption: currentValue,
+    }))
+  }
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.setQuestionAnswer(this.state.selectedOption, this.props.id);
-  };
+    const { setQuestionAnswer, id } = this.props
+    const { selectedOption } = this.state
+    e.preventDefault()
+    setQuestionAnswer(selectedOption, id)
+  }
 
   render() {
-    const { selectedOption } = this.state;
-    const { options } = this.props;
+    const { selectedOption } = this.state
+    const { options } = this.props
     return (
       <Fragment>
         <div className="question__big-title">Would You Rather:</div>
@@ -37,19 +39,21 @@ class QuestionUnAnswered extends Component {
                 checked={selectedOption === `${OPTIONS[index]}`}
                 onChange={this.handleCheck}
               />
-            <label className="form__label" htmlFor={`${OPTIONS[index]}`}>
-              <span className='form__textlabel'>{options[index].text}</span>
-            </label>
+              <label className="form__label" htmlFor={`${OPTIONS[index]}`}>
+                <span className="form__textlabel">{options[index].text}</span>
+              </label>
             </div>
           ))}
-          <button className="form__btn btn btn--filled">Submit</button>
+          <button className="form__btn btn btn--filled" type="submit">
+            Submit
+          </button>
         </form>
       </Fragment>
-    );
+    )
   }
 }
 
-QuestionUnAnswered.propTypes= {
+QuestionUnAnswered.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-export default QuestionUnAnswered;
+}
+export default QuestionUnAnswered

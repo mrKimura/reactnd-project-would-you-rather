@@ -1,14 +1,13 @@
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
 const calculateVotesPercents = (allVotes, currentVotes) => {
-  if (currentVotes === 0) return `0%`;
-  return `${Math.round((currentVotes / allVotes) * 100)}%`;
-};
+  if (currentVotes === 0) return `0%`
+  return `${Math.round((currentVotes / allVotes) * 100)}%`
+}
 
-const QuestionAnswered = props => {
-  const { options, authedUser } = props;
-  const allVotes = options.reduce((acc, val) => acc + val.votes.length, 0);
+const QuestionAnswered = ({ options, authedUser }) => {
+  const allVotes = options.reduce((acc, val) => acc + val.votes.length, 0)
   return (
     <Fragment>
       <div className="question__big-title">Results:</div>
@@ -16,13 +15,13 @@ const QuestionAnswered = props => {
         {options.map((option, index) => (
           <div
             className={`question__result container result ${
-              option.votes.includes(authedUser) ? "result--me" : ""
+              option.votes.includes(authedUser) ? 'result--me' : ''
             }`}
             key={`option${index + 1}`}
           >
             <div
               className={`result__value ${
-                option.votes.includes(authedUser) ? "result__value--me" : ""
+                option.votes.includes(authedUser) ? 'result__value--me' : ''
               }`}
             >
               Would you rather {option.text}
@@ -30,12 +29,9 @@ const QuestionAnswered = props => {
             <div className="result__bar-container">
               <div
                 className="result__bar"
-                data-result={`${calculateVotesPercents(
-                  allVotes,
-                  option.votes.length
-                )}`}
+                data-result={`${calculateVotesPercents(allVotes, option.votes.length)}`}
                 style={{
-                  width: calculateVotesPercents(allVotes, option.votes.length)
+                  width: calculateVotesPercents(allVotes, option.votes.length),
                 }}
               />
             </div>
@@ -46,12 +42,12 @@ const QuestionAnswered = props => {
         ))}
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
-QuestionAnswered.propTypes= {
+QuestionAnswered.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
-  authedUser: PropTypes.string.isRequired
-};
+  authedUser: PropTypes.string.isRequired,
+}
 
-export default QuestionAnswered;
+export default QuestionAnswered

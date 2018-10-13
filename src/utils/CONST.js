@@ -1,1 +1,1 @@
-export const OPTIONS = ["optionOne", "optionTwo"];
+export const OPTIONS = ['optionOne', 'optionTwo']
