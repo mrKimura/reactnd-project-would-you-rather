@@ -1,6 +1,6 @@
 # Would You Rather Project
 
-TThis is the project for Udacity's React & Redux course.
+This is the project for Udacity's React & Redux course.
 It shows my skills in developing web applications using both React and Redux.
 
 ## Features
