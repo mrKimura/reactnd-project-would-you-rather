@@ -20,7 +20,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log('aaa')
     const { activeQuestions } = this.state
     const { answeredQuestions, unAnsweredQuestions } = this.props
     return (
